@@ -2,7 +2,9 @@ package com.peknight.ip4s
 
 import com.comcast.ip4s.{Host, Port}
 
-case class HostPort(host: Host, port: Option[Port])
+case class HostPort(host: Host, port: Option[Port]):
+  override def toString: String = s"$host${port.map(p => s":$p").getOrElse("")}"
+end HostPort
 object HostPort:
   def fromString(value: String): Option[HostPort] =
     val index = value.lastIndexOf(':')
